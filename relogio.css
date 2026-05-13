@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+
+:root {
+    --cor-de-fundo: #1E1E1E;
+    --verde: #6FFF57;
+    --branco: #FFFFFF;
+    --detalhe: #3A375E;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor-de-fundo);
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+/* Relógio */
+.relogio {
+    width: 300px;
+    height: 300px;
+    border: 8px solid var(--verde);
+    border-radius: 50%;
+    position: relative;
+    background: #2a2a2a;
+    box-shadow: 0 0 20px rgba(111, 255, 87, 0.4);
+}
+
+/* Centro do relógio */
+.centro {
+    width: 15px;
+    height: 15px;
+    background: var(--verde);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Ponteiros */
+.ponteiro {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+.hora {
+    width: 8px;
+    height: 70px;
+    background: var(--branco);
+}
+
+.minuto {
+    width: 5px;
+    height: 100px;
+    background: var(--verde);
+}
+
+.segundo {
+    width: 2px;
+    height: 120px;
+    background: red;
+}
+
+/* Números */
+.numero {
+    position: absolute;
+    color: var(--branco);
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.num12 { top: 10px; left: 50%; transform: translateX(-50%); }
+.num3  { right: 10px; top: 50%; transform: translateY(-50%); }
+.num6  { bottom: 10px; left: 50%; transform: translateX(-50%); }
+.num9  { left: 10px; top: 50%; transform: translateY(-50%); }
