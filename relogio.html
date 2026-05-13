@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio de Ponteiro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section class="conteudo-principal">
+
+        <h1 class="titulo-principal">
+            Relógio Analógico<span>_</span>
+        </h1>
+
+        <div class="relogio">
+
+            <div class="numero num12">12</div>
+            <div class="numero num3">3</div>
+            <div class="numero num6">6</div>
+            <div class="numero num9">9</div>
+
+            <div class="ponteiro hora" id="hora"></div>
+            <div class="ponteiro minuto" id="minuto"></div>
+            <div class="ponteiro segundo" id="segundo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+    </section>
+
+    <script>
+        function atualizarRelogio() {
+
+            const agora = new Date();
+
+            const segundos = agora.getSeconds();
+            const minutos = agora.getMinutes();
+            const horas = agora.getHours();
+
+            const grauSegundos = segundos * 6;
+            const grauMinutos = minutos * 6;
+            const grauHoras = (horas % 12) * 30 + minutos * 0.5;
+
+            document.getElementById("segundo").style.transform =
+                `translateX(-50%) rotate(${grauSegundos}deg)`;
+
+            document.getElementById("minuto").style.transform =
+                `translateX(-50%) rotate(${grauMinutos}deg)`;
+
+            document.getElementById("hora").style.transform =
+                `translateX(-50%) rotate(${grauHoras}deg)`;
+        }
+
+        setInterval(atualizarRelogio, 1000);
+
+        atualizarRelogio();
+    </script>
+
+</body>
+
+</html>
