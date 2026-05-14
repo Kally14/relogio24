@@ -4,13 +4,13 @@
   --bg: #16161a;
   --card: #141428;
   --card-2: #1b1b33;
-  --tab: #2a2852;
-  --tab-active: #3c396f;
-  --verde: #c026d3;        /* Roxo neon */
+  --tab: #19c7e6d3;
+  --tab-active: #00e0fdd8;
+  --verde: #14c8f5;        /* Ciano Neon */
   --texto: #e7e7f5;
   --muted: #a9a9c7;
-  --shadow: rgba(192, 38, 211, 0.25);
-  --borda: rgba(192, 38, 211, 0.15);
+  --shadow: rgba(20, 200, 245, 0.4);
+  --borda: rgb(20, 200, 245);
 }
 
 * {
@@ -21,7 +21,7 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Chakra Petch', sans-serif;
-  background: radial-gradient(circle at top, #4c1d95 0%, #16161a 45%, #101014 100%);
+  background: radial-gradient(circle at top, #14c8f5 0%, #16161a 45%, #101014 100%);
   color: var(--texto);
   display: flex;
   align-items: center;
@@ -31,10 +31,10 @@ body {
 
 .app {
   width: min(980px, 100%);
-  background: linear-gradient(180deg, rgba(10, 10, 18, 0.92), rgba(7, 7, 12, 0.98));
+  background: linear-gradient(180deg, rgba(10, 17, 18, 0.92), rgba(7, 7, 12, 0.98));
   border: 1px solid var(--borda);
   border-radius: 28px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 20px 60px rgba(20, 200, 245, 0.35);
   padding: 28px;
 }
 
@@ -75,7 +75,7 @@ body {
   font-size: 0.95rem;
   cursor: pointer;
   transition: 0.2s ease;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgb(20, 200, 245);
 }
 
 .tab-btn:last-child {
@@ -124,7 +124,7 @@ body {
   position: relative;
   border: 8px solid var(--verde);
   background: radial-gradient(circle at center, #2a2a43 0%, #17172c 70%, #111120 100%);
-  box-shadow: 0 0 0 8px rgba(192, 38, 211, 0.06), 0 0 35px rgba(192, 38, 211, 0.3);
+  box-shadow: 0 0 0 8px rgba(20, 200, 245, 0.2), 0 0 45px rgba(20, 200, 245, 0.5);
 }
 
 .centro {
@@ -137,7 +137,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  box-shadow: 0 0 12px rgba(192, 38, 211, 0.8);
+  box-shadow: 0 0 15px rgba(20, 200, 245, 0.9);
 }
 
 .ponteiro {
@@ -164,7 +164,7 @@ body {
 .segundo {
   width: 2px;
   height: 130px;
-  background: #ff4545;
+  background: #67e8f9;
   transition: transform 0.2s linear;
 }
 
@@ -187,7 +187,7 @@ body {
   margin: 0 auto;
   padding: 34px 22px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgb(20, 226, 241);
   border: 1px solid var(--borda);
   box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.12);
 }
@@ -209,7 +209,7 @@ body {
   font-size: clamp(2.5rem, 7vw, 4.6rem);
   font-weight: 700;
   letter-spacing: 2px;
-  color: #b40d0d;
+  color: #14c8f5;
   margin-bottom: 22px;
 }
 
@@ -227,7 +227,7 @@ body {
   font-size: 1rem;
   padding: 12px 18px;
   border-radius: 14px;
-  background: #9511bd;
+  background: #14c8f5;
   color: var(--texto);
   transition: 0.2s ease;
   min-width: 110px;
@@ -235,18 +235,18 @@ body {
 
 .controls button:hover {
   transform: translateY(-1px);
-  background: #3c396f;
+  background: #0ab8e0;
 }
 
 #startStopwatch,
 #startTimer {
   background: var(--verde);
-  color: #c50740;
+  color: #111;
 }
 
 #startStopwatch:hover,
 #startTimer:hover {
-  background: #e879f9;
+  background: #0ab8e0;
 }
 
 .timer-input-area {
@@ -263,7 +263,7 @@ body {
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid var(--borda);
-  background: #8b03ca;
+  background: #14c8f5;
   color: var(--texto);
   font-family: inherit;
   font-size: 1rem;
