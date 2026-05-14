@@ -1,3 +1,4 @@
+// ====================== VARIÁVEIS ======================
 const tabButtons = document.querySelectorAll(".tab-btn");
 const panels = document.querySelectorAll(".panel");
 
@@ -20,72 +21,61 @@ const pauseTimerBtn = document.getElementById("pauseTimer");
 const resetTimerBtn = document.getElementById("resetTimer");
 const timerStatus = document.getElementById("timerStatus");
 
+// ====================== FUNÇÕES ÚTEIS ======================
 function formatarDoisDigitos(valor) {
   return String(valor).padStart(2, "0");
 }
 
+// ====================== TROCAR ABAS ======================
 function trocarAba(targetId) {
-  tabButtons.forEach((btn) => {
+  tabButtons.forEach(btn => {
     btn.classList.toggle("active", btn.dataset.target === targetId);
   });
-
-  panels.forEach((panel) => {
+  panels.forEach(panel => {
     panel.classList.toggle("active", panel.id === targetId);
   });
 }
 
-tabButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    trocarAba(btn.dataset.target);
-  });
+tabButtons.forEach(btn => {
+  btn.addEventListener("click", () => trocarAba(btn.dataset.target));
 });
 
+// ====================== RELÓGIO ANALÓGICO ======================
 function atualizarRelogioAnalogico() {
   const agora = new Date();
+  const seg = agora.getSeconds();
+  const min = agora.getMinutes();
+  const hor = agora.getHours();
 
-  const segundos = agora.getSeconds();
-  const minutos = agora.getMinutes();
-  const horas = agora.getHours();
+  const angSeg = seg * 6;
+  const angMin = min * 6 + seg * 0.1;
+  const angHor = (hor % 12) * 30 + min * 0.5;
 
-  const anguloSegundos = segundos * 6;
-  const anguloMinutos = minutos * 6 + segundos * 0.1;
-  const anguloHoras = (horas % 12) * 30 + minutos * 0.5;
-
-  segundo.style.transform = `translateX(-50%) rotate(${anguloSegundos}deg)`;
-  minuto.style.transform = `translateX(-50%) rotate(${anguloMinutos}deg)`;
-  hora.style.transform = `translateX(-50%) rotate(${anguloHoras}deg)`;
+  if (segundo) segundo.style.transform = `translateX(-50%) rotate(${angSeg}deg)`;
+  if (minuto) minuto.style.transform = `translateX(-50%) rotate(${angMin}deg)`;
+  if (hora) hora.style.transform = `translateX(-50%) rotate(${angHor}deg)`;
 }
 
+// ====================== RELÓGIO DIGITAL ======================
 function atualizarRelogioDigital() {
   const agora = new Date();
-
-  const h = formatarDoisDigitos(agora.getHours());
-  const m = formatarDoisDigitos(agora.getMinutes());
-  const s = formatarDoisDigitos(agora.getSeconds());
-
-  const dia = formatarDoisDigitos(agora.getDate());
-  const mes = formatarDoisDigitos(agora.getMonth() + 1);
-  const ano = agora.getFullYear();
-
-  digitalTime.textContent = `${h}:${m}:${s}`;
-  digitalDate.textContent = `${dia}/${mes}/${ano}`;
+  digitalTime.textContent = `${formatarDoisDigitos(agora.getHours())}:${formatarDoisDigitos(agora.getMinutes())}:${formatarDoisDigitos(agora.getSeconds())}`;
+  digitalDate.textContent = `${formatarDoisDigitos(agora.getDate())}/${formatarDoisDigitos(agora.getMonth() + 1)}/${agora.getFullYear()}`;
 }
 
+// ====================== CRONÔMETRO ======================
 let stopwatchInterval = null;
 let stopwatchElapsed = 0;
 
 function atualizarStopwatch() {
-  const horas = Math.floor(stopwatchElapsed / 3600);
-  const minutos = Math.floor((stopwatchElapsed % 3600) / 60);
-  const segundos = stopwatchElapsed % 60;
-
-  stopwatchDisplay.textContent =
-    `${formatarDoisDigitos(horas)}:${formatarDoisDigitos(minutos)}:${formatarDoisDigitos(segundos)}`;
+  const h = Math.floor(stopwatchElapsed / 3600);
+  const m = Math.floor((stopwatchElapsed % 3600) / 60);
+  const s = stopwatchElapsed % 60;
+  stopwatchDisplay.textContent = `${formatarDoisDigitos(h)}:${formatarDoisDigitos(m)}:${formatarDoisDigitos(s)}`;
 }
 
 startStopwatchBtn.addEventListener("click", () => {
   if (stopwatchInterval) return;
-
   stopwatchInterval = setInterval(() => {
     stopwatchElapsed++;
     atualizarStopwatch();
@@ -104,77 +94,64 @@ resetStopwatchBtn.addEventListener("click", () => {
   atualizarStopwatch();
 });
 
+// ====================== TIMER ======================
 let timerInterval = null;
 let timerRemaining = 0;
 let timerAtivo = false;
 
 function atualizarTimerDisplay() {
-  const minutos = Math.floor(timerRemaining / 60);
-  const segundos = timerRemaining % 60;
-  countdownDisplay.textContent =
-    `${formatarDoisDigitos(minutos)}:${formatarDoisDigitos(segundos)}`;
+  const m = Math.floor(timerRemaining / 60);
+  const s = timerRemaining % 60;
+  countdownDisplay.textContent = `${formatarDoisDigitos(m)}:${formatarDoisDigitos(s)}`;
 }
 
 function iniciarTimerSeNecessario() {
   if (timerAtivo) return;
-
   if (timerRemaining <= 0) {
-    const minutosDigitados = Number(timerInput.value);
-
-    if (!Number.isFinite(minutosDigitados) || minutosDigitados <= 0) {
-      timerStatus.textContent = "Digite um valor de minutos maior que zero.";
+    const min = Number(timerInput.value);
+    if (isNaN(min) || min <= 0) {
+      timerStatus.textContent = "Digite um valor válido!";
       return;
     }
-
-    timerRemaining = minutosDigitados * 60;
-    atualizarTimerDisplay();
+    timerRemaining = min * 60;
   }
-
   timerAtivo = true;
   timerStatus.textContent = "Timer rodando...";
-
+  
   timerInterval = setInterval(() => {
     timerRemaining--;
-
+    atualizarTimerDisplay();
+    
     if (timerRemaining <= 0) {
       clearInterval(timerInterval);
-      timerInterval = null;
       timerAtivo = false;
-      timerRemaining = 0;
-      atualizarTimerDisplay();
       timerStatus.textContent = "Tempo finalizado!";
-      return;
     }
-
-    atualizarTimerDisplay();
   }, 1000);
 }
 
 startTimerBtn.addEventListener("click", iniciarTimerSeNecessario);
 
 pauseTimerBtn.addEventListener("click", () => {
-  if (!timerAtivo) return;
-
   clearInterval(timerInterval);
-  timerInterval = null;
   timerAtivo = false;
   timerStatus.textContent = "Pausado.";
 });
 
 resetTimerBtn.addEventListener("click", () => {
   clearInterval(timerInterval);
-  timerInterval = null;
   timerAtivo = false;
-  timerRemaining = Number(timerInput.value) * 60;
+  timerRemaining = Number(timerInput.value) * 60 || 300;
   atualizarTimerDisplay();
   timerStatus.textContent = "Pronto para começar.";
 });
 
+// ====================== INICIAR APLICAÇÃO ======================
 function iniciarAplicacao() {
   atualizarRelogioAnalogico();
   atualizarRelogioDigital();
   atualizarStopwatch();
-  timerRemaining = Number(timerInput.value) * 60;
+  timerRemaining = Number(timerInput.value) * 60 || 300;
   atualizarTimerDisplay();
 
   setInterval(atualizarRelogioAnalogico, 1000);

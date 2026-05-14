@@ -6,11 +6,11 @@
   --card-2: #1b1b33;
   --tab: #2a2852;
   --tab-active: #3c396f;
-  --verde: #6fff57;
+  --verde: #c026d3;        /* Roxo neon */
   --texto: #e7e7f5;
   --muted: #a9a9c7;
-  --shadow: rgba(111, 255, 87, 0.15);
-  --borda: rgba(255, 255, 255, 0.08);
+  --shadow: rgba(192, 38, 211, 0.25);
+  --borda: rgba(192, 38, 211, 0.15);
 }
 
 * {
@@ -21,8 +21,7 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Chakra Petch', sans-serif;
-  background:
-    radial-gradient(circle at top, #232347 0%, #16161a 45%, #101014 100%);
+  background: radial-gradient(circle at top, #4c1d95 0%, #16161a 45%, #101014 100%);
   color: var(--texto);
   display: flex;
   align-items: center;
@@ -124,11 +123,8 @@ body {
   border-radius: 50%;
   position: relative;
   border: 8px solid var(--verde);
-  background:
-    radial-gradient(circle at center, #2a2a43 0%, #17172c 70%, #111120 100%);
-  box-shadow:
-    0 0 0 8px rgba(111, 255, 87, 0.06),
-    0 0 35px rgba(111, 255, 87, 0.2);
+  background: radial-gradient(circle at center, #2a2a43 0%, #17172c 70%, #111120 100%);
+  box-shadow: 0 0 0 8px rgba(192, 38, 211, 0.06), 0 0 35px rgba(192, 38, 211, 0.3);
 }
 
 .centro {
@@ -141,7 +137,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  box-shadow: 0 0 12px rgba(111, 255, 87, 0.8);
+  box-shadow: 0 0 12px rgba(192, 38, 211, 0.8);
 }
 
 .ponteiro {
@@ -181,9 +177,9 @@ body {
 }
 
 .num12 { top: 14px; left: 50%; transform: translateX(-50%); }
-.num3  { right: 16px; top: 50%; transform: translateY(-50%); }
-.num6  { bottom: 14px; left: 50%; transform: translateX(-50%); }
-.num9  { left: 16px; top: 50%; transform: translateY(-50%); }
+.num3 { right: 16px; top: 50%; transform: translateY(-50%); }
+.num6 { bottom: 14px; left: 50%; transform: translateX(-50%); }
+.num9 { left: 16px; top: 50%; transform: translateY(-50%); }
 
 .digital-box,
 .timer-box {
@@ -213,7 +209,7 @@ body {
   font-size: clamp(2.5rem, 7vw, 4.6rem);
   font-weight: 700;
   letter-spacing: 2px;
-  color: #f4f4ff;
+  color: #b40d0d;
   margin-bottom: 22px;
 }
 
@@ -231,7 +227,7 @@ body {
   font-size: 1rem;
   padding: 12px 18px;
   border-radius: 14px;
-  background: #2d2b56;
+  background: #9511bd;
   color: var(--texto);
   transition: 0.2s ease;
   min-width: 110px;
@@ -245,12 +241,12 @@ body {
 #startStopwatch,
 #startTimer {
   background: var(--verde);
-  color: #111;
+  color: #c50740;
 }
 
 #startStopwatch:hover,
 #startTimer:hover {
-  background: #8cff78;
+  background: #e879f9;
 }
 
 .timer-input-area {
@@ -267,7 +263,7 @@ body {
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid var(--borda);
-  background: #0f0f1f;
+  background: #8b03ca;
   color: var(--texto);
   font-family: inherit;
   font-size: 1rem;
@@ -289,12 +285,10 @@ body {
   .tabs {
     grid-template-columns: 1fr 1fr;
   }
-
   .tab-btn {
     font-size: 0.88rem;
     padding: 14px 10px;
   }
-
   .content {
     padding: 24px 16px;
   }
