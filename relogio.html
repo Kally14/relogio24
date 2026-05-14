@@ -1,65 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relógio de Ponteiro</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relógio Interativo</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <main class="app">
+    <header class="topo">
+      <h1>Meus objetivos do ano<span>_</span></h1>
+      <p>Relógio interativo com abas em JavaScript</p>
+    </header>
 
-    <section class="conteudo-principal">
+    <nav class="tabs" aria-label="Abas do relógio">
+      <button class="tab-btn active" data-target="analogico">Relógio Analógico</button>
+      <button class="tab-btn" data-target="digital">Relógio Digital</button>
+      <button class="tab-btn" data-target="cronometro">Cronômetro</button>
+      <button class="tab-btn" data-target="timer">Timer</button>
+    </nav>
 
-        <h1 class="titulo-principal">
-            Relógio Analógico<span>_</span>
-        </h1>
+    <section class="content">
+      <div class="panel active" id="analogico">
+        <h2>Relógio Analógico</h2>
 
         <div class="relogio">
+          <div class="numero num12">12</div>
+          <div class="numero num3">3</div>
+          <div class="numero num6">6</div>
+          <div class="numero num9">9</div>
 
-            <div class="numero num12">12</div>
-            <div class="numero num3">3</div>
-            <div class="numero num6">6</div>
-            <div class="numero num9">9</div>
+          <div class="ponteiro hora" id="hora"></div>
+          <div class="ponteiro minuto" id="minuto"></div>
+          <div class="ponteiro segundo" id="segundo"></div>
 
-            <div class="ponteiro hora" id="hora"></div>
-            <div class="ponteiro minuto" id="minuto"></div>
-            <div class="ponteiro segundo" id="segundo"></div>
-
-            <div class="centro"></div>
-
+          <div class="centro"></div>
         </div>
+      </div>
 
+      <div class="panel" id="digital">
+        <h2>Relógio Digital</h2>
+        <div class="digital-box">
+          <div class="digital-time" id="digitalTime">00:00:00</div>
+          <div class="digital-date" id="digitalDate">--/--/----</div>
+        </div>
+      </div>
+
+      <div class="panel" id="cronometro">
+        <h2>Cronômetro</h2>
+        <div class="timer-box">
+          <div class="timer-display" id="stopwatchDisplay">00:00:00</div>
+
+          <div class="controls">
+            <button id="startStopwatch">Iniciar</button>
+            <button id="pauseStopwatch">Pausar</button>
+            <button id="resetStopwatch">Zerar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="timer">
+        <h2>Timer</h2>
+        <div class="timer-box">
+          <div class="timer-input-area">
+            <label for="timerInput">Minutos:</label>
+            <input type="number" id="timerInput" min="1" max="999" value="5" />
+          </div>
+
+          <div class="timer-display" id="countdownDisplay">05:00</div>
+
+          <div class="controls">
+            <button id="startTimer">Iniciar</button>
+            <button id="pauseTimer">Pausar</button>
+            <button id="resetTimer">Zerar</button>
+          </div>
+
+          <p class="status" id="timerStatus">Pronto para começar.</p>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <script>
-        function atualizarRelogio() {
-
-            const agora = new Date();
-
-            const segundos = agora.getSeconds();
-            const minutos = agora.getMinutes();
-            const horas = agora.getHours();
-
-            const grauSegundos = segundos * 6;
-            const grauMinutos = minutos * 6 + segundos * 0.1;
-            const grauHoras = (horas % 12) * 30 + minutos * 0.5;
-
-            document.getElementById("segundo").style.transform =
-                `translateX(-50%) rotate(${grauSegundos}deg)`;
-
-            document.getElementById("minuto").style.transform =
-                `translateX(-50%) rotate(${grauMinutos}deg)`;
-
-            document.getElementById("hora").style.transform =
-                `translateX(-50%) rotate(${grauHoras}deg)`;
-        }
-
-        setInterval(atualizarRelogio, 1000);
-        atualizarRelogio();
-    </script>
-
+  <script src="script.js"></script>
 </body>
-
 </html>
